@@ -1,434 +1,375 @@
-<%@ page import="com.store.model.User" %><%--
+<%@ page import="com.store.model.User" %>
+<%@ page import="com.store.model.Book" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.store.dao.BookDao" %><%--
   Created by IntelliJ IDEA.
   User: ISSUSER
   Date: 2018/6/7
   Time: 8:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html xmlns:color="http://www.w3.org/1999/xhtml">
 <head>
-  <title>ebookstore</title>
+    <title>ebookstore</title>
 
-  <!-- meta -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- css -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/ionicons.min.css"> -->
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/owl.theme.css">
-  <link rel="stylesheet" href="css/owl.transitions.css">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox.css">
-  <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox-theme.css">
-  <link rel="stylesheet" href="css/custom.css">
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/ionicons.min.css"> -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/owl.transitions.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox-theme.css">
+    <link rel="stylesheet" href="css/custom.css">
 
-  <!-- js -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/jquery.actual.min.js"></script>
+    <!-- js -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery.actual.min.js"></script>
 </head>
 
 
 <body data-spy="scroll" data-target="#navbar-example">
-<div id="preloader"></div>
+<%
+    String userName = null;
+    User user = (User)session.getAttribute("user");
+    if(user != null){
+        userName = user.getUserName();
+    }
+%>
+<jsp:include page="head.jsp">
+    <jsp:param name="user" value="<%=userName%>"/>
+</jsp:include>
 
-<!--导航栏-->
-<div id="wrapper">
-  <div id="overlay-1">
-    <section id="navigation-scroll">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-example">
-              <span class="sr-only">Toggle navigation</span>
-              <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="#">Ebookstore</a>
-          </div>
+<div id="bottom" class="bottom text-center">
+    <a href="#about"><i class="ion-ios7-arrow-down"></i></a>
+</div>
 
-
-          <div class="collapse navbar-collapse" id="navbar-example">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#sale"><p>书店秒杀</p></a></li>
-              <li><a href="#list"><p>销售热榜</p></a></li>
-              <li><a href="#ScreenShot"><p>发现好书</p></a></li>
-              <li><a href="#recommend"><p>为你推荐</p></a></li>
-              <li><a href="#contact"><p>联系我们</p></a></li>
-              <li><a href="login.jsp"><p>
-                <%
-                    User user = (User) session.getAttribute("user");
-                  if(user == null){
-                      out.print("登陆/注册");
-                  }else {
-                      out.print(user.getUserName());
-                  }
-                %>
-              </p></a></li>
-            </ul>
-          </div>
-        </div><!-- /.container-fluid -->
-      </nav>    <!-- navbar -->
-    </section>    <!-- #navigation -->
-
-
-    <section id="starting">
-
-      <div class="text-center starting-text wow animated zoomInDown">
-        <h2></h2>
-        <h2 style="font-size: 90px  " color: #FFFFFF;>Welcome to Ebookstore</h2>
-        <br>
-        <h2 style="font-size: 38px  " color: #FFFFFF class="small">Take &nbsp; a &nbsp; look&nbsp; at </h2>
-
-
-        <a href="#sale" class="bttn apple-store btn btn-lg">
-          <img src="img/apple.png" alt="apple">
-          <br>
-          <h6>书店秒杀榜</h6>
-        </a>
-
-        <a href="#list" class="bttn google-play btn btn-lg">
-          <img src="img/play.png" alt="play">
-          <br>
-          <h6>本周销售榜</h6>
-        </a>
-
-
-      </div>
-    </section>
-
-    <div id="bottom" class="bottom text-center">
-      <a href="#about"><i class="ion-ios7-arrow-down"></i></a>
-    </div>
-
-  </div>
+</div>
 </div>
 
 <!-- 秒杀榜 -->
 <section id="sale">
-  <div class="container">
-    <div class="row text-center heading">
-      <div class="wow animated zoomInDown heading-text">
-        <br/>
-        <br/>
-        <br/>
+    <div class="container">
+        <div class="row text-center heading">
+            <div class="wow animated zoomInDown heading-text">
+                <br/>
+                <br/>
+                <br/>
 
-      </div>
-
-
-    </div>    <!-- row -->
-    <div class="row about-us-text">
-      <div class="col-md-12">
+            </div>
 
 
-        <p class="text-center">
-
-        <p>Ebookstore书店的秒杀活动已经开始啦.
-          今天的秒杀，纷纷以书友们惊人的手速迅速告终。接下来，还有更多让你大展身手的机会在等你
-          从明天起，每天的秒杀活动都在继续，如果想第一时间参加活动，请持续刷新本网站，这段文案后面自行修改。
-        </p>
-        </p>
-      </div>
-    </div>    <!-- row -->
+        </div>    <!-- row -->
+        <div class="row about-us-text">
+            <div class="col-md-12">
 
 
-    <div class="row main_content">
+                <p class="text-center">
 
-      <div class="col-md-4 col-sm-4 wow animated zoomIn " data-wow-delay="0.1s">
-        <a href="#">
-          <figure>
-            <img class="pro img-responsive center-block " src="img/three men in a boat.jpg" alt="image">
-          </figure>
-          <h5 class="text-center">老人与海</h5>
-        </a>
-
-      </div>    <!-- col-md-4 -->
+                <p>Ebookstore书店的秒杀活动已经开始啦.
+                    今天的秒杀，纷纷以书友们惊人的手速迅速告终。接下来，还有更多让你大展身手的机会在等你
+                    从明天起，每天的秒杀活动都在继续，如果想第一时间参加活动，请持续刷新本网站，这段文案后面自行修改。
+                </p>
+                </p>
+            </div>
+        </div>    <!-- row -->
 
 
-      <div class="col-md-4 col-sm-4 wow animated zoomIn" data-wow-delay="0.1s">
-        <a href="#">
-          <figure>
-            <img class="pro img-responsive center-block " src="img/luxun.jpg" alt="image">
-          </figure>
-          <h5 class="text-center">鲁迅小说集</h5>
-        </a>
-      </div>    <!-- col-md-4 -->
+        <div class="row main_content">
 
-      <div class="col-md-4 col-sm-4 wow animated zoomIn" data-wow-delay="0.1s">
-        <a href="#">
-          <figure>
-            <img class="pro img-responsive center-block" src="img/yecheng.jpg" alt="image">
-          </figure>
-          <h5 class="text-center">椰城</h5>
-        </a>
-      </div>    <!-- col-md-4 -->
+            <%
+                BookDao bookDao = new BookDao();
 
-      <div class="container-fluid">
-        <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
-             data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">&nbsp;</p></a></div>
-        <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
-             data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">更多 》</p></a></div>
+                List<Book> books = bookDao.getMiaoShaBooks();
 
-      </div><!-- row main_content -->
+                for (Book book : books) {
+
+            %>
+
+            <div class="col-md-4 col-sm-4 wow animated zoomIn " data-wow-delay="0.1s">
+                <a href=<%="showDetails.do?id=" + book.getId()%>>
+                    <figure>
+                        <img class="pro img-responsive center-block " src="<%=book.getImgPath()%>" alt="image">
+                    </figure>
+                    <h5 class="text-center"><%=book.getName()%></h5>
+                </a>
+
+            </div>    <!-- col-md-4 -->
+
+            <%
+                }
+            %>
+
+            <div class="container-fluid">
+                <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
+                     data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">&nbsp;</p></a></div>
+                <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
+                     data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">更多 》</p></a></div>
+
+            </div><!-- row main_content -->
 
 
-    </div>    <!-- container -->
-  </div>
+        </div>    <!-- container -->
+    </div>
 </section>    <!-- about us -->
 
 <!-- 销售热榜 -->
 <section id="list">
-  <div class="container">
-    <div class="row text-center heading">
-      <br>
-      <br>
-    </div>
+    <div class="container">
+        <div class="row text-center heading">
+            <br>
+            <br>
+        </div>
 
-    <div class="main_content">
-      <div class="services">
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="service">
-              <img src="img/jiusannian.jpg" alt="service1">
-              <div class="text-center">
-                <h4>九三年</h4>
-                <p>
-                  大作家雨果的最后一部长篇小说。不论是革命者还是被革命者，都是伟大的人。
-                </p>
-              </div>
-            </div>
-          </div> <!-- .col-md-3 -->
-
-
-          <div class="col-md-3 col-sm-6">
-            <div class="service">
-              <img src="img/renjiancihua.jpg" alt="service1">
-              <div class="text-center">
-                <h4>人间词话</h4>
-                <p>
-                  国学大师王国维最富盛名的美学经典著作，文史哲融合解读，叶嘉莹说，只有伟大的作家，才能在作品中创造出王氏之“人生三境界”般作品中的世界。
-                </p>
-              </div>
-            </div>
-          </div> <!-- .col-md-3 -->
+        <div class="main_content">
+            <div class="services">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service">
+                            <img src="img/jiusannian.jpg" alt="service1">
+                            <div class="text-center">
+                                <h4>九三年</h4>
+                                <p>
+                                    大作家雨果的最后一部长篇小说。不论是革命者还是被革命者，都是伟大的人。
+                                </p>
+                            </div>
+                        </div>
+                    </div> <!-- .col-md-3 -->
 
 
-          <div class="col-md-3 col-sm-6">
-            <div class="service">
-              <div class="service">
-                <img src="img/siyuetian.jpg" alt="service1">
-                <div class="text-center">
-                  <h4>你是人间四月天</h4>
-                  <p>
-                    “我说，你是人间的四月天； 笑响点亮了四面风；轻灵在春的光艳中交舞着变。”，其文如其人。
-                  </p>
-                </div>
-              </div>
-            </div> <!-- .service -->
-          </div> <!-- .col-md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="service">
-              <div class="service">
-                <img src="img/tm2.png" alt="service1">
-                <div class="text-center">
-                  <h4>三人同舟</h4>
-                  <p>
-                    这是一个荡气回肠的小说故事。说了什么我也不知道，你可以自己去看看。听说还不错哦。
-                  </p>
-                </div>
-              </div>
-            </div> <!-- .service -->
-          </div> <!-- .col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service">
+                            <img src="img/renjiancihua.jpg" alt="service1">
+                            <div class="text-center">
+                                <h4>人间词话</h4>
+                                <p>
+                                    国学大师王国维最富盛名的美学经典著作，文史哲融合解读，叶嘉莹说，只有伟大的作家，才能在作品中创造出王氏之“人生三境界”般作品中的世界。
+                                </p>
+                            </div>
+                        </div>
+                    </div> <!-- .col-md-3 -->
 
-        </div>    <!-- row -->
-      </div>    <!-- services -->
-    </div>    <!-- main_content -->
 
-    <div class="wow animated zoomInDown heading-text text-center">
-      <br>
-      <h3>销售热榜</h3>
-      <br/>
-      <h4 style="color: aliceblue">精选本周销售量前列的图书，倾城为你推荐</h4>
-    </div>
-  </div>    <!-- container -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service">
+                            <div class="service">
+                                <img src="img/siyuetian.jpg" alt="service1">
+                                <div class="text-center">
+                                    <h4>你是人间四月天</h4>
+                                    <p>
+                                        “我说，你是人间的四月天； 笑响点亮了四面风；轻灵在春的光艳中交舞着变。”，其文如其人。
+                                    </p>
+                                </div>
+                            </div>
+                        </div> <!-- .service -->
+                    </div> <!-- .col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service">
+                            <div class="service">
+                                <img src="img/tm2.png" alt="service1">
+                                <div class="text-center">
+                                    <h4>三人同舟</h4>
+                                    <p>
+                                        这是一个荡气回肠的小说故事。说了什么我也不知道，你可以自己去看看。听说还不错哦。
+                                    </p>
+                                </div>
+                            </div>
+                        </div> <!-- .service -->
+                    </div> <!-- .col-md-3 -->
+
+                </div>    <!-- row -->
+            </div>    <!-- services -->
+        </div>    <!-- main_content -->
+
+        <div class="wow animated zoomInDown heading-text text-center">
+            <br>
+            <h3>销售热榜</h3>
+            <br/>
+            <h4 style="color: aliceblue">精选本周销售量前列的图书，倾城为你推荐</h4>
+        </div>
+    </div>    <!-- container -->
 </section>
 
 
 <!--发现好书-->
 <section id="ScreenShot">
-  <div class="container">
-    <div class="row text-center heading">
-      <div class="wow animated zoomIn heading-text">
-        <br>
-        <br>
-        <h3>这里发现书籍的芳香</h3>
+    <div class="container">
+        <div class="row text-center heading">
+            <div class="wow animated zoomIn heading-text">
+                <br>
+                <br>
+                <h3>这里发现书籍的芳香</h3>
 
-      </div> <!-- #heading-text -->
-    </div>
-    <div class="main_content">
-      <div class="container">
-
-        <div class="col-xs-12">
-          <div id="screenshots-wrap" class="owl-carousel owl-theme">
-            <a href="img/comp.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/comp.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-
-            <a href="img/java.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/java.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-            <a href="img/maogai.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/maogai.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-
-            <a href="img/gangyao.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/gangyao.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-            <a href="img/Compiler.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/Compiler.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-
-            <a href="img/yecheng.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/yecheng.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-            <a href="img/sixiu.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/sixiu.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-
-            <a href="img/mayuan.jpg" class="item" data-lightbox-gallery="screenshots">
-              <img src="img/mayuan.jpg" class="img_res wow animated zoomIn" alt="">
-            </a>
-
-          </div>
+            </div> <!-- #heading-text -->
         </div>
+        <div class="main_content">
+            <div class="container">
 
-      </div>    <!-- row -->
-    </div>    <!-- .container -->
-  </div>    <!-- main_content -->
-  <!--</div>	 container -->
+                <div class="col-xs-12">
+                    <div id="screenshots-wrap" class="owl-carousel owl-theme">
+                        <a href="img/comp.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/comp.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+
+                        <a href="img/java.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/java.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+                        <a href="img/maogai.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/maogai.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+
+                        <a href="img/gangyao.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/gangyao.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+                        <a href="img/Compiler.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/Compiler.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+
+                        <a href="img/miaosha/yecheng.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/miaosha/yecheng.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+                        <a href="img/sixiu.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/sixiu.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+
+                        <a href="img/mayuan.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/mayuan.jpg" class="img_res wow animated zoomIn" alt="">
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>    <!-- row -->
+        </div>    <!-- .container -->
+    </div>    <!-- main_content -->
+    <!--</div>	 container -->
 </section>    <!-- #ScreenShot -->
 
 
 <!--为你推荐-->
 <section id="recommend">
-  <div class="container">
-    <div class="row text-center heading">
-      <div class="bg-image col-md-12">
-        <div class="wow animated zoomIn heading-text">
-          <br>
-          <h3>这些你值得品味</h3>
-          <br/>
+    <div class="container">
+        <div class="row text-center heading">
+            <div class="bg-image col-md-12">
+                <div class="wow animated zoomIn heading-text">
+                    <br>
+                    <h3>这些你值得品味</h3>
+                    <br/>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row main_content">
-      <div class="col-md-10 col-md-offset-1">
-        <div id="client-speech" class="owl-carousel owl-theme">
-          <div class="item">
-            <img class=" img-responsive center-block" src="img/luxun2.png" alt="text">
-            <br>
-            <br>
-            <br>
-            <p class="client-comment text-center">
-              这是一本好书，这真的是一本好书；这是一本我从来没有见过的好书；这本书真的太好了，你快点读吧。<br>
-              这是一本好书；这是一本我从来没有见过的好书；这本书真的太好了，你快点读吧。
-            </p>
-            <br>
-            <div class="row text-center">
-              <p class="client-name text-center"> ----- 孙文祥轻轻为你说的</p>
+        <div class="row main_content">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="client-speech" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <img class=" img-responsive center-block" src="img/luxun2.png" alt="text">
+                        <br>
+                        <br>
+                        <br>
+                        <p class="client-comment text-center">
+                            这是一本好书，这真的是一本好书；这是一本我从来没有见过的好书；这本书真的太好了，你快点读吧。<br>
+                            这是一本好书；这是一本我从来没有见过的好书；这本书真的太好了，你快点读吧。
+                        </p>
+                        <br>
+                        <div class="row text-center">
+                            <p class="client-name text-center"> ----- 孙文祥轻轻为你说的</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class=" img-responsive center-block" src="img/shanhe.jpg" alt="text">
+                        <br>
+                        <br>
+                        <br>
+                        <p class="client-comment text-center">
+                            一处建筑，一处文化，一段历史，山河是历久弥新的历史，山河中有千秋，有百代。这既是余秋雨先生的游记，却又是一本山河之书，一段山河之情<br>
+                            这里除了残砖破瓦，什么都没有，这里没有历史，这里就是历史。
+                        </p>
+                        <br>
+                        <div class="row text-center">
+                            <p class="client-name text-center"> ----- 匿名轻轻为你说的</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class=" img-responsive center-block" src="img/wenhua.jpg" alt="text">
+                        <br>
+                        <br>
+                        <br>
+                        <p class="client-comment text-center">
+                            文化苦旅，堪称余秋雨先生的代表作，也是他的第一部文化散文集。读其散文，可见其思想深刻，抒情而蕴育哲理，发人深思，又不觉玄妙。<br>
+                            获奖无数，经典之作。
+                        </p>
+                        <br>
+                        <div class="row text-center">
+                            <p class="client-name text-center"> ----- 匿名轻轻为你说的</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <img class=" img-responsive center-block" src="img/shanhe.jpg" alt="text">
-            <br>
-            <br>
-            <br>
-            <p class="client-comment text-center">
-              一处建筑，一处文化，一段历史，山河是历久弥新的历史，山河中有千秋，有百代。这既是余秋雨先生的游记，却又是一本山河之书，一段山河之情<br>
-              这里除了残砖破瓦，什么都没有，这里没有历史，这里就是历史。
-            </p>
-            <br>
-            <div class="row text-center">
-              <p class="client-name text-center"> ----- 匿名轻轻为你说的</p>
-            </div>
-          </div>
-          <div class="item">
-            <img class=" img-responsive center-block" src="img/wenhua.jpg" alt="text">
-            <br>
-            <br>
-            <br>
-            <p class="client-comment text-center">
-              文化苦旅，堪称余秋雨先生的代表作，也是他的第一部文化散文集。读其散文，可见其思想深刻，抒情而蕴育哲理，发人深思，又不觉玄妙。<br>
-              获奖无数，经典之作。
-            </p>
-            <br>
-            <div class="row text-center">
-              <p class="client-name text-center"> ----- 匿名轻轻为你说的</p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>    <!-- clients -->
 
 
 <!-- 联系我们 -->
 <section id="contact">
-  <div class="container text-center">
-    <div class="row text-center">
-      <div class="bg-image">
-        <div class="col-md-6 col-md-offset-3 text-center share-text wow animated zoomInDown heading-text">
-          <p class="heading">
-            如果你有任何问题，可以给我们书店留言哦；以上所有文案欢迎各位自行修改。
-          </p>
+    <div class="container text-center">
+        <div class="row text-center">
+            <div class="bg-image">
+                <div class="col-md-6 col-md-offset-3 text-center share-text wow animated zoomInDown heading-text">
+                    <p class="heading">
+                        如果你有任何问题，可以给我们书店留言哦；以上所有文案欢迎各位自行修改。
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row text-center main_content">
-      <form method="post" action="#" class="">
-        <div class="col-md-4 col-md-offset-2 text-center">
-          <div class="form">
-            <div class="input-group margin-bottom-sm">
+        <div class="row text-center main_content">
+            <form method="post" action="#" class="">
+                <div class="col-md-4 col-md-offset-2 text-center">
+                    <div class="form">
+                        <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-user fa-fw"></i>
 	  								</span>
-              <input class="form-control" type="text" placeholder="姓名" required>
-            </div>
-            <div class="input-group margin-bottom-sm">
+                            <input class="form-control" type="text" placeholder="姓名" required>
+                        </div>
+                        <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-envelope-o fa-fw"></i>
 	  								</span>
-              <input class="form-control" name="email" type="email" placeholder="邮箱地址" required>
-            </div>
-            <div class="input-group margin-bottom-sm">
+                            <input class="form-control" name="email" type="email" placeholder="邮箱地址" required>
+                        </div>
+                        <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-tags fa-fw"></i>
 	  								</span>
-              <input class="form-control" type="text" placeholder="书籍名称">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 text-center">
-          <div class="form">
-            <div class="input-group margin-bottom-sm">
+                            <input class="form-control" type="text" placeholder="书籍名称">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="form">
+                        <div class="input-group margin-bottom-sm">
 									<span class="input-group-addon">
 										<i class="fa fa-comment-o fa-fw"></i>
 									</span>
-              <input type="text" name="text" class="form-control message" placeholder="留言信息">
-            </div>
-          </div>
+                            <input type="text" name="text" class="form-control message" placeholder="留言信息">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
+        <input class="btn btn-sub" type="submit" value="提交信息">
     </div>
-    <input class="btn btn-sub" type="submit" value="提交信息">
-  </div>
 </section>
 
 

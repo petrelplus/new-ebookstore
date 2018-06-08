@@ -22,4 +22,13 @@
         <url-pattern>/register.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ShowDetailsLet</servlet-name>
+        <servlet-class>com.store.ctrl.ShowDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowDetailsLet</servlet-name>
+        <url-pattern>/showDetails.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
