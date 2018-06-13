@@ -19,10 +19,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.30" level="application_server_libraries" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/tomcatx64/apache-tomcat-8.5.30/lib/tomcat-jdbc.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/lib/mysql-connector-java-5.1.45.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -31,7 +32,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/lib/tomcat-jdbc.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

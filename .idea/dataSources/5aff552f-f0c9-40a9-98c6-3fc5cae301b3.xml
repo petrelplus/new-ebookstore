@@ -1076,7 +1076,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="241" name="number">
+    <column id="261" parent="241" name="book_number">
       <Position>4</Position>
       <Comment>用户购买同本书的数量</Comment>
       <DataType>int(16)|0</DataType>
@@ -1268,6 +1268,7 @@
       <Position>4</Position>
       <Comment>????</Comment>
       <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
@@ -1302,7 +1303,6 @@
       <Position>9</Position>
       <Comment>???</Comment>
       <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>

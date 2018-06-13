@@ -59,14 +59,14 @@ public class RegisterServlet extends HttpServlet {
                 }
 
                 if (result) {
-                    req.getSession().setAttribute("user", user);
+                    req.getSession().setAttribute("user",user);
+
                     out.println("<script>");
                     out.println("alert('注册成功!');");
                     out.println("window.location.href='/index.jsp';");
                     out.println("</script>");
                     out.flush();
                 }else {
-                    req.getSession().setAttribute("user", user);
                     out.println("<script>");
                     out.println("alert('注册失败!');");
                     out.println("history.back(-1)");

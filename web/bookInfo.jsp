@@ -14,7 +14,6 @@
 
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="css/ionicons.min.css"> -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/owl.theme.css">
@@ -43,10 +42,6 @@
     Book book = (Book) request.getAttribute("book");
 
 %>
-<%--<jsp:include page="head.jsp">--%>
-    <%--<jsp:param name="user" value="<%=userName%>"/>--%>
-<%--</jsp:include>--%>
-
 <div id="content">
     <div id="content-left">
         <div id="detailsdetails">
@@ -65,7 +60,6 @@
                             <%=book.getDescription()%>
                         </p>
                     </div>
-                    <%--<div class="box_bottom"></div>--%>
                 </div>
             </div>
             <fieldset>
@@ -79,11 +73,33 @@
                 <p><%=book.getDescription() %>
                 </p>
             </fieldset>
-            <%--<a href="CartServlet?id=<%=book.getId()%>" class="addtocart">--%>
-                <%--<img src="img/apple.png">--%>
-            <%--</a>--%>
         </div>
     </div>
+
+    <div id="content-right" style="padding-left: 20%;padding-bottom: 5%">
+        <input id="bookNumber" type="bookNumber" step="1" min="1" max="100" value="1"/>
+        <button onclick="addCart('<%=((User) session.getAttribute("user")).getId()%>','<%=book.getId()%>')">加入购物车
+        </button>
+    </div>
+
+    <script>
+        function addCart(userId, bookId) {
+            var bookNumber = $("#bookNumber").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/addCart",
+                data: {
+                    userId: userId,
+                    bookId: bookId,
+                    bookNumber: bookNumber
+                },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+    </script>
 </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.store.model;
 
+import com.store.util.UUidUtil;
+
 public class Cart {
     private String id;
 
@@ -7,7 +9,25 @@ public class Cart {
 
     private String bookId;
 
-    private Integer number;
+    private Integer bookNumber;
+
+    public Cart(String userId, String bookId, Integer bookNumber) {
+        this.id = UUidUtil.getUUid();
+        this.userId = userId;
+        this.bookId = bookId;
+        this.bookNumber = bookNumber;
+    }
+
+    public Cart(String id, String userId, String bookId, Integer bookNumber) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.bookNumber = bookNumber;
+    }
+
+    public Cart(){
+
+    }
 
     public String getId() {
         return id;
@@ -33,11 +53,11 @@ public class Cart {
         this.bookId = bookId;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getBookNumber() {
+        return bookNumber;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setBookNumber(Integer bookNumber) {
+        this.bookNumber = bookNumber;
     }
 }
