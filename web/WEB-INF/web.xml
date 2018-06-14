@@ -40,4 +40,13 @@
         <url-pattern>/showDetails.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoginOrRegister</servlet-name>
+        <servlet-class>com.store.ctrl.LoginOrRegister</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginOrRegister</servlet-name>
+        <url-pattern>/LoginOrRegister</url-pattern>
+    </servlet-mapping>
+
 </web-app>
