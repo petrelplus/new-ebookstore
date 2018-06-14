@@ -78,8 +78,17 @@
 
     <div id="content-right" style="padding-left: 20%;padding-bottom: 5%">
         <input id="bookNumber" type="bookNumber" step="1" min="1" max="100" value="1"/>
-        <button onclick="addCart('<%=((User) session.getAttribute("user")).getId()%>','<%=book.getId()%>')">加入购物车
-        </button>
+        <%
+            if(session.getAttribute("user") != null){
+        %>
+        <button onclick="addCart('<%=((User) session.getAttribute("user")).getId()%>','<%=book.getId()%>')">加入购物车</button>
+        <%
+            }else{
+        %>
+        <button onclick="alert('请先登录')">加入购物车</button>
+        <%
+            }
+        %>
     </div>
 
     <script>

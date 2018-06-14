@@ -28,6 +28,14 @@
     <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox.css">
     <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox-theme.css">
     <link rel="stylesheet" href="css/custom.css">
+    <style type="text/css">
+        #nav ul li ul{ position:absolute; display:none;}
+        #nav ul li ul li{ float:none; line-height:30px; text-align:left;}
+        #nav ul li ul li a{ width:100%;}
+        #nav ul li ul li a:hover{ background-color:#06f;}
+        #nav ul li:hover ul{ display:block}
+    </style>
+
 
     <!-- js -->
     <script src="js/jquery.min.js"></script>
@@ -99,7 +107,7 @@
             <div class="col-md-4 col-sm-4 wow animated zoomIn " data-wow-delay="0.1s">
                 <a href=<%="showDetails.do?id=" + book.getId()%>>
                     <figure>
-                        <img class="pro img-responsive center-block " src="<%=book.getImgPath()%>" alt="image">
+                        <img class="pro img-responsive center-block " src="<%=book.getImgPath()%>" alt="image" style="box-shadow: 10px 8px 10px #616161;">
                     </figure>
                     <h5 class="text-center"><%=book.getName()%></h5>
                 </a>

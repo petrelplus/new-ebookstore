@@ -19,22 +19,40 @@
 
 
                     <div class="collapse navbar-collapse" id="navbar-example">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#sale"><p>书店秒杀</p></a></li>
-                            <li><a href="#list"><p>销售热榜</p></a></li>
-                            <li><a href="#ScreenShot"><p>发现好书</p></a></li>
-                            <li><a href="#recommend"><p>为你推荐</p></a></li>
-                            <li><a href="#contact"><p>联系我们</p></a></li>
-                            <li><a href="login.jsp"><p>
+                        <div id="nav">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#sale"><p>书店秒杀</p></a></li>
+                                <li><a href="#list"><p>销售热榜</p></a></li>
+                                <li><a href="#ScreenShot"><p>发现好书</p></a></li>
+                                <li><a href="#recommend"><p>为你推荐</p></a></li>
+                                <li><a href="#contact"><p>联系我们</p></a></li>
                                 <%
-                                    if (userName.equals("null")) {
-                                        out.print("登陆/注册");
-                                    } else {
-                                        out.print(userName);
+                                    if (session.getAttribute("user") != null) {
+                                %>
+                                <li><a href="#"><p>
+                                        <%
+                                            out.print(userName);
+                                    %>
+                                    <ul>
+                                        <li><a href="#">个人信息</a></li>
+                                        <li><a href="#">购物车</a></li>
+                                        <li><a href="/logout.do">退出登陆</a></li>
+                                    </ul>
+                                <%
+                                    }else{
+                                %>
+                                <li><a href="login.jsp"><p>登陆/注册</p></a></li>
+                                <%
                                     }
                                 %>
-                            </p></a></li>
-                        </ul>
+                                </p></a>
+
+                                </li>
+
+
+                            </ul>
+                        </div>
+
                     </div>
                 </div><!-- /.container-fluid -->
             </nav>    <!-- navbar -->
@@ -68,3 +86,4 @@
 
     </div>
 </div>
+
