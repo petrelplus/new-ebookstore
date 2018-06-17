@@ -41,12 +41,21 @@
     </servlet-mapping>
 
     <servlet>
+<<<<<<< HEAD
         <servlet-name>MessageServlet</servlet-name>
         <servlet-class>com.store.ctrl.MessageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
         <url-pattern>/message.do</url-pattern>
+=======
+        <servlet-name>LoginOrRegister</servlet-name>
+        <servlet-class>com.store.ctrl.LoginOrRegister</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginOrRegister</servlet-name>
+        <url-pattern>/LoginOrRegister</url-pattern>
+>>>>>>> edd4d651880b7bd58eb69ab03203a48b468ed698
     </servlet-mapping>
 
 </web-app>

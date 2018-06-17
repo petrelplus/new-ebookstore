@@ -161,7 +161,7 @@
                             <div class="text-center">
                                 <h4>人间词话</h4>
                                 <p>
-                                    国学大师王国维最富盛名的美学经典著作，文史哲融合解读，叶嘉莹说，只有伟大的作家，才能在作品中创造出王氏之“人生三境界”般作品中的世界。
+                                    叶嘉莹说，只有如他这般伟大的作家，才能在作品中创造出王氏之“人生三境界”般作品中的世界。
                                 </p>
                             </div>
                         </div>
@@ -232,8 +232,8 @@
                         <a href="img/java.jpg" class="item" data-lightbox-gallery="screenshots">
                             <img src="img/java.jpg" class="img_res wow animated zoomIn" alt="">
                         </a>
-                        <a href="img/maogai.jpg" class="item" data-lightbox-gallery="screenshots">
-                            <img src="img/maogai.jpg" class="img_res wow animated zoomIn" alt="">
+                        <a href="img/maogai2.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/maogai2.jpg" class="img_res wow animated zoomIn" alt="">
                         </a>
 
                         <a href="img/gangyao.jpg" class="item" data-lightbox-gallery="screenshots">
@@ -243,8 +243,8 @@
                             <img src="img/Compiler.jpg" class="img_res wow animated zoomIn" alt="">
                         </a>
 
-                        <a href="img/miaosha/yecheng.jpg" class="item" data-lightbox-gallery="screenshots">
-                            <img src="img/miaosha/yecheng.jpg" class="img_res wow animated zoomIn" alt="">
+                        <a href="img/miaosha/yecheng2.jpg" class="item" data-lightbox-gallery="screenshots">
+                            <img src="img/miaosha/yecheng2.jpg" class="img_res wow animated zoomIn" alt="">
                         </a>
                         <a href="img/sixiu.jpg" class="item" data-lightbox-gallery="screenshots">
                             <img src="img/sixiu.jpg" class="img_res wow animated zoomIn" alt="">
