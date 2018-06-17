@@ -335,32 +335,44 @@
             <div class="bg-image">
                 <div class="col-md-6 col-md-offset-3 text-center share-text wow animated zoomInDown heading-text">
                     <p class="heading">
-                        如果你有任何问题，可以给我们书店留言哦；以上所有文案欢迎各位自行修改。
+                        如果你有任何问题，可以给我们书店留言哦
                     </p>
                 </div>
             </div>
         </div>
-        <div class="row text-center main_content">
-            <form method="post" action="#" class="">
+        <form method="post" action="message.do" class="">
+            <div class="row text-center main_content">
+                <!-- 以下表单用MessageServlet处理 -->
                 <div class="col-md-4 col-md-offset-2 text-center">
                     <div class="form">
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-user fa-fw"></i>
 	  								</span>
-                            <input class="form-control" type="text" placeholder="姓名" required>
+                            <input class="form-control" name="name" type="text" placeholder="请留下你的大名或昵称叭！（匿名也支持！）">
                         </div>
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-envelope-o fa-fw"></i>
 	  								</span>
-                            <input class="form-control" name="email" type="email" placeholder="邮箱地址" required>
+                            <input class="form-control" name="email" type="email" placeholder="反馈信息发到哪个邮箱呢?（必填！）" required>
                         </div>
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-tags fa-fw"></i>
 	  								</span>
-                            <input class="form-control" type="text" placeholder="书籍名称">
+                            <!--<input class="form-control" name="book_name" type="text" placeholder="意见有关哪本书或板块嘞？">-->
+                            <select class="form-control" name="type" placeholder="意见有关哪本书或板块嘞？">
+                                <OPTION value="所有板块">所有板块（下拉选择详细一点的咯）</OPTION>
+                                <OPTION value="书店秒杀">书店秒杀</OPTION>
+                                <OPTION value="销售热榜">销售热榜</OPTION>
+                                <OPTION value="发现好书">发现好书</OPTION>
+                                <OPTION value="为你推荐">为你推荐</OPTION>
+                                <OPTION value="联系我们">联系我们（就是这里！）</OPTION>
+                                <OPTION value="登录/注册">登录/注册</OPTION>
+                                <OPTION value="书籍意见">书籍意见</OPTION>
+                                <OPTION value="其他意见">其他意见</OPTION>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -370,13 +382,13 @@
 									<span class="input-group-addon">
 										<i class="fa fa-comment-o fa-fw"></i>
 									</span>
-                            <input type="text" name="text" class="form-control message" placeholder="留言信息">
+                            <input type="text" name="text" class="form-control message" placeholder="在这里尽情吐槽！（或夸赞o(*￣▽￣*)ブ！不要超过255个字符！）" required>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-        <input class="btn btn-sub" type="submit" value="提交信息">
+            </div>
+            <input class="btn btn-sub" type="submit" value="提交信息">
+        </form>
     </div>
 </section>
 

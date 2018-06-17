@@ -40,4 +40,13 @@
         <url-pattern>/showDetails.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>MessageServlet</servlet-name>
+        <servlet-class>com.store.ctrl.MessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/message.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
