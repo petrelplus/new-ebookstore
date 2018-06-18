@@ -19,7 +19,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="css/ionicons.min.css"> -->
+    <link rel="stylesheet" href="css/ionicons.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/owl.theme.css">
@@ -29,11 +29,14 @@
     <link rel="stylesheet" href="js/nivo-lightbox/nivo-lightbox-theme.css">
     <link rel="stylesheet" href="css/custom.css">
     <style type="text/css">
+
+        #nav ul li a{ text-decoration:none; display:block; padding:0px 10px; }
+        #nav ul li a:hover{ color:#FFF; background-color:#87CEEB; box-shadow: 3px 3px 10px #616161;}
         #nav ul li ul{ position:absolute; display:none;}
-        #nav ul li ul li{ float:none; line-height:30px; text-align:left;}
-        #nav ul li ul li a{ width:100%;}
-        #nav ul li ul li a:hover{ background-color:#06f;}
-        #nav ul li:hover ul{ display:block}
+        #nav ul li ul li{ float:none; line-height:30px; }
+        #nav ul li ul li a{ color:white; width:100%; background-color:#87CEEB;}
+        #nav ul li ul li a:hover{ color:#00BFFF; background-color:white; }
+        #nav ul li:hover ul{ display:block;}
     </style>
 
 
@@ -60,9 +63,6 @@
 
 <div id="bottom" class="bottom text-center">
     <a href="#about"><i class="ion-ios7-arrow-down"></i></a>
-</div>
-
-</div>
 </div>
 
 <!-- 秒杀榜 -->
@@ -122,7 +122,7 @@
                 <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
                      data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">&nbsp;</p></a></div>
                 <div class="col-md-offset-11 col-md-1 col-sm-offset-11 col-sm-1 wow animated zoomIn"
-                     data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">更多 》</p></a></div>
+                     data-wow-delay="0.3s"><a href="#"><p style="font-size: 13px">更多 >></p></a></div>
 
             </div><!-- row main_content -->
 
@@ -335,44 +335,32 @@
             <div class="bg-image">
                 <div class="col-md-6 col-md-offset-3 text-center share-text wow animated zoomInDown heading-text">
                     <p class="heading">
-                        如果你有任何问题，可以给我们书店留言哦
+                        如果你有任何问题，可以给我们书店留言哦；以上所有文案欢迎各位自行修改。
                     </p>
                 </div>
             </div>
         </div>
-        <form method="post" action="message.do" class="">
-            <div class="row text-center main_content">
-                <!-- 以下表单用MessageServlet处理 -->
+        <div class="row text-center main_content">
+            <form method="post" action="#" class="">
                 <div class="col-md-4 col-md-offset-2 text-center">
                     <div class="form">
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-user fa-fw"></i>
 	  								</span>
-                            <input class="form-control" name="name" type="text" placeholder="请留下你的大名或昵称叭！（匿名也支持！）">
+                            <input class="form-control" type="text" placeholder="姓名" required>
                         </div>
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-envelope-o fa-fw"></i>
 	  								</span>
-                            <input class="form-control" name="email" type="email" placeholder="反馈信息发到哪个邮箱呢?（必填！）" required>
+                            <input class="form-control" name="email" type="email" placeholder="邮箱地址" required>
                         </div>
                         <div class="input-group margin-bottom-sm">
 	  								<span class="input-group-addon">
 	  									<i class="fa fa-tags fa-fw"></i>
 	  								</span>
-                            <!--<input class="form-control" name="book_name" type="text" placeholder="意见有关哪本书或板块嘞？">-->
-                            <select class="form-control" name="type" placeholder="意见有关哪本书或板块嘞？">
-                                <OPTION value="所有板块">所有板块（下拉选择详细一点的咯）</OPTION>
-                                <OPTION value="书店秒杀">书店秒杀</OPTION>
-                                <OPTION value="销售热榜">销售热榜</OPTION>
-                                <OPTION value="发现好书">发现好书</OPTION>
-                                <OPTION value="为你推荐">为你推荐</OPTION>
-                                <OPTION value="联系我们">联系我们（就是这里！）</OPTION>
-                                <OPTION value="登录/注册">登录/注册</OPTION>
-                                <OPTION value="书籍意见">书籍意见</OPTION>
-                                <OPTION value="其他意见">其他意见</OPTION>
-                            </select>
+                            <input class="form-control" type="text" placeholder="书籍名称">
                         </div>
                     </div>
                 </div>
@@ -382,13 +370,13 @@
 									<span class="input-group-addon">
 										<i class="fa fa-comment-o fa-fw"></i>
 									</span>
-                            <input type="text" name="text" class="form-control message" placeholder="在这里尽情吐槽！（或夸赞o(*￣▽￣*)ブ！不要超过255个字符！）" required>
+                            <input type="text" name="text" class="form-control message" placeholder="留言信息">
                         </div>
                     </div>
                 </div>
-            </div>
-            <input class="btn btn-sub" type="submit" value="提交信息">
-        </form>
+            </form>
+        </div>
+        <input class="btn btn-sub" type="submit" value="提交信息">
     </div>
 </section>
 
