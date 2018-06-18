@@ -34,9 +34,9 @@
                                             out.print(userName);
                                     %>
                                     <ul>
-                                        <li><a href="#">个人信息</a></li>
-                                        <li><a href="#">购物车</a></li>
-                                        <li><a href="/logout.do">退出登陆</a></li>
+                                        <li><a href="#">&nbsp;个人信息</a></li>
+                                        <li><a href="#">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
+                                        <li><a href="/logout.do">&nbsp;退出登陆</a></li>
                                     </ul>
                                 <%
                                     }else{
