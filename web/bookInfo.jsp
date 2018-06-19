@@ -97,7 +97,7 @@
                                     %>
                                     <ul>
                                         <li><a href="#">&nbsp;个人信息</a></li>
-                                        <li><a href="#">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
+                                        <li><a href="/cart.jsp">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
                                         <li><a href="/logout.do">&nbsp;退出登陆</a></li>
                                     </ul>
                                         <%
@@ -122,10 +122,13 @@
         </section>
 
         <section id="starting">
-            <br><br><br><br><br>
+            <br><br>
             <div class="title">
-                <a href="index.jsp">主页</a> >> 所有书籍
-                <br><br>
+                <div class="back_click">
+                    <a href="index.jsp">
+                        &nbsp;返回主页&nbsp;
+                    </a>
+                </div>
             </div>
             <div id="outer">
                 <div id="inner_book">
@@ -154,7 +157,7 @@
                                             <li><span id="num-jia" class="num-jia">+</span></li>
                                         </ul>
                                     </li>
-                                    <li><span class="kucun">（库存:10）</span></li>
+                                    <li><span class="kucun">（库存:100）</span></li>
                                 </ul>
                             </div>
                             <div id="book_buy">
@@ -171,7 +174,7 @@
                                 %>
                                 <div class="newpage_click">
                                     <a href="#" class="buy_button" onclick="alert('请先登录')">
-                                    加入购物车
+                                        加入购物车
                                     </a>
                                 </div>
                                 <%
@@ -193,10 +196,8 @@
                     <div id="info_author">作者：xxx</div>
                     <div id="info_publisher">出版社：xxx</div>
                     <div id="info_year">出版年份：2018.6</div>
-                    <div id="info_description"><%=book.getDescription()%></div>
+                    <div id="info_description" style="text-shadow: darkgrey 0px 0px 3px;"><%=book.getDescription()%></div>
                 </div>
-
-
 
             </div>
 
@@ -239,7 +240,7 @@
                     obj.change();
                 });*/
                 function addCart(userId, bookId) {
-                    var bookNumber = $("#bookNumber").val();
+                    var bookNumber = $("#input-num").val();
 
                     $.ajax({
                         type: "POST",

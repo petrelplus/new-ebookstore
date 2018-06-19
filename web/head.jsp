@@ -35,7 +35,7 @@
                                     %>
                                     <ul>
                                         <li><a href="#">&nbsp;个人信息</a></li>
-                                        <li><a href="#">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
+                                        <li><a href="/cart.jsp">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
                                         <li><a href="/logout.do">&nbsp;退出登陆</a></li>
                                     </ul>
                                 <%

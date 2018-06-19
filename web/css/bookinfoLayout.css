@@ -217,3 +217,32 @@ img {
     border-right: 0;
 }
 
+#cart_outer{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+#cart_inner{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width:80%;
+    height: 90%;
+    background-color: #FFFAF0;
+    box-shadow: grey 0px 0px 10px;
+    border-radius: 10px;
+}
+
+#cart_table{
+    margin: 10%;
+
+}
+
+#cartTable{
+    background: white;
+}
