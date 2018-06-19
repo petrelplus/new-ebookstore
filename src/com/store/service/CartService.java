@@ -1,8 +1,10 @@
 package com.store.service;
 
+import com.store.model.Book;
 import com.store.model.Cart;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public interface CartService {
 
@@ -11,4 +13,6 @@ public interface CartService {
     Cart getCartByBookIdAndUserId(String bookId, String userId) throws SQLException;
 
     boolean updateNumber(String cartId, int nNumber) throws SQLException;
+
+    HashMap<Book,Integer> getBooksById( String userId) throws SQLException;
 }

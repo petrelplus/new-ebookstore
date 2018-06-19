@@ -196,6 +196,8 @@
                     <div id="info_description"><%=book.getDescription()%></div>
                 </div>
 
+
+
             </div>
 
             <script>

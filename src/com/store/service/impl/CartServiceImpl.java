@@ -1,10 +1,12 @@
 package com.store.service.impl;
 
 import com.store.dao.CartDao;
+import com.store.model.Book;
 import com.store.model.Cart;
 import com.store.service.CartService;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class CartServiceImpl implements CartService {
     private CartDao cartDao = new CartDao();
@@ -26,5 +28,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public boolean updateNumber(String cartId,int nNumber) throws SQLException {
         return cartDao.updatebookNumber(cartId,nNumber);
+    }
+
+    @Override
+    public HashMap<Book,Integer> getBooksById(String userId) throws SQLException{
+        return cartDao.getBooksById(userId);
     }
 }

@@ -1,13 +1,16 @@
 package com.store.dao;
 
+import com.store.model.Book;
 import com.store.model.Cart;
 import com.store.util.DBUtil;
+import jdk.internal.dynalink.beans.StaticClass;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CartDao {
@@ -53,7 +56,6 @@ public class CartDao {
             String userId = resultSet.getString("user_id");
             int number = resultSet.getInt("book_number");
             Cart cart = new Cart(id, userId, bookId, number);
-
             carts.add(cart);
         }
 
@@ -69,4 +71,24 @@ public class CartDao {
 
         return preparedStatement.executeUpdate() > 0;
     }
+
+    public  HashMap<Book, Integer> getBooksById(String userId) throws SQLException {
+        String sql = "select * from tb_cart where user_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, userId);
+        HashMap<Book,Integer> cartbooks=new HashMap<>();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet == null) {
+            return null;
+        } else {
+           while (resultSet.next()){
+               Book book=new Book();
+               book.setId(resultSet.getString("book_id"));
+               cartbooks.put(book,resultSet.getInt("book_number"));
+           }
+        }
+        return cartbooks;
+    }
+
+
 }
