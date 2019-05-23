@@ -29,13 +29,13 @@ window.onload = function () {
 
     // 更新总数和总价格，已选浮层
     function getTotal() {
-		var seleted = 0;
+		var selected = 0;
 		var price = 0;
 		var HTMLstr = '';
 		for (var i = 0, len = tr.length; i < len; i++) {
 			if (tr[i].getElementsByTagName('input')[0].checked) {
 				tr[i].className = 'on';
-				seleted += parseInt(tr[i].getElementsByTagName('input')[1].value);
+				selected += parseInt(tr[i].getElementsByTagName('input')[1].value);
 				price += parseFloat(tr[i].cells[4].innerHTML);
 				HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>'
 			}
@@ -44,11 +44,11 @@ window.onload = function () {
 			}
 		}
 	
-		selectedTotal.innerHTML = seleted;
+		selectedTotal.innerHTML = selected;
 		priceTotal.innerHTML = price.toFixed(2);
 		selectedViewList.innerHTML = HTMLstr;
 	
-		if (seleted == 0) {
+		if (selected == 0) {
 			foot.className = 'foot';
 		}
 	}

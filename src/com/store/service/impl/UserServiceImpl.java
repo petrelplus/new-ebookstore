@@ -5,6 +5,7 @@ import com.store.model.User;
 import com.store.service.UserService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
@@ -40,5 +41,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean regiaterUser(User user) throws SQLException {
         return userDao.addUser(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() throws SQLException {
+        return userDao.selectAll();
     }
 }

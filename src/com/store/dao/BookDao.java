@@ -75,4 +75,21 @@ public class BookDao {
     }
 
 
+    public List<Book> getBooksByName(String bookName) throws SQLException {
+        String sql = "select * from tb_book where name like \"%" + bookName + "%\"";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet == null) {
+            return null;
+        } else {
+            return getResult(resultSet);
+        }
+    }
+
+    public void deleteBookById(String bookId) throws SQLException {
+        String sql = "delete from tb_book where id = " + bookId;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate();
+    }
 }

@@ -68,4 +68,12 @@ public class UserDao {
         return users;
     }
 
+    public List<User> selectAll() throws SQLException {
+        String sql = "select * from tb_user";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<User> userList = getResult(resultSet);
+
+        return userList;
+    }
 }

@@ -56,7 +56,7 @@
     if (user != null) {
         userName = user.getUserName();
     }
-    HashMap<Book,Integer> books=cartService.getBooksById(user.getId());
+    HashMap<Book,Integer> books = cartService.getBooksById(user.getId());
 %>
 
 <!--导航栏-->
@@ -144,7 +144,7 @@
                             <%  double totalCharge = 0;
                                 for(Map.Entry<Book,Integer> book : books.entrySet()){%>
                             <tr>
-                                <td><input class="check-one check" type="checkbox"/></td>
+                                <td style="width: 10%;"><input class="check-one check" type="checkbox"/></td>
                                 <td class="goods"><img src="<%= book.getKey().getImgPath()%>" alt=""/><span><%= book.getKey().getName()%></span></td>
                                 <td class="price"><%= book.getKey().getPrice()%></td>
                                 <td class="count"><%= book.getValue()%></td>

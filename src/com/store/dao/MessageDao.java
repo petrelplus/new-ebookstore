@@ -28,11 +28,11 @@ public class MessageDao {
     public boolean checkID(Message message)throws SQLException
     {
         Statement statement = connection.createStatement();
-        ResultSet resultSet =statement.executeQuery("SELECT * FROM tb_message WHERE messageID =\""+message.getMessageID() + "\"");
+        ResultSet resultSet =statement.executeQuery("SELECT * FROM tb_message WHERE message_id =\""+message.getMessageID() + "\"");
         while (resultSet.wasNull())
         {
             message.setMessageID(UUidUtil.getUUid());
-            resultSet =statement.executeQuery("SELECT * FROM tb_message WHERE messageID =\""+message.getMessageID() + "\"");
+            resultSet =statement.executeQuery("SELECT * FROM tb_message WHERE message_id =\""+message.getMessageID() + "\"");
         }
         return true;
     }

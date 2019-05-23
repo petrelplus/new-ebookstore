@@ -76,14 +76,18 @@ public class CartDao {
         String sql = "select * from tb_cart where user_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, userId);
-        HashMap<Book,Integer> cartbooks=new HashMap<>();
+        HashMap<Book,Integer> cartbooks = new HashMap<>();
+        BookDao bookDao = new BookDao();
+
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet == null) {
             return null;
         } else {
            while (resultSet.next()){
-               Book book=new Book();
-               book.setId(resultSet.getString("book_id"));
+               String book_id = resultSet.getString("book_id");
+
+               Book book = bookDao.getBookById(book_id);
+
                cartbooks.put(book,resultSet.getInt("book_number"));
            }
         }
