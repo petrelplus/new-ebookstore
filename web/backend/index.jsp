@@ -74,7 +74,7 @@
                         </li>
 
                         <li>
-                            <a href="/backend/book/add">添加图书</a>
+                            <a href="/backend/book/add.jsp">添加图书</a>
                         </li>
                     </ul>
                 </li>

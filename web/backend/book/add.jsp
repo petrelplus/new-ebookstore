@@ -94,28 +94,28 @@
         <div id="page-inner">
             <div class="row">
                 <div class="am-margin-bottom-sm">
-                    <form class="form-horizontal" id="addItemForm" method="post" action="/backend/bookAdd">
+                    <form class="form-horizontal" method="post">
 
                         <div class="form-group">
-                            <label for="addItemNo" class=" col-sm-2 am-padding-horizontal-0 control-label">书籍名称</label>
+                            <label for="bookName" class=" col-sm-2 am-padding-horizontal-0 control-label">书籍名称</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="addItemNo" name="itemNo" maxlength="25"
+                                <input type="text" class="form-control" id="bookName" name="bookName" maxlength="25"
                                        required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="addItemName" class="col-sm-2 am-padding-horizontal-0 control-label">书籍价格</label>
+                            <label for="bookPrice" class="col-sm-2 am-padding-horizontal-0 control-label">书籍价格</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="addItemName" name="itemName" maxlength="25"
+                                <input type="text" class="form-control" id="bookPrice" name="bookPrice" maxlength="25"
                                        required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="addItemType" class="col-sm-2 am-padding-horizontal-0 control-label">书籍类别</label>
+                            <label for="bookType" class="col-sm-2 am-padding-horizontal-0 control-label">书籍类别</label>
                             <div class="col-sm-6">
-                                <select class="form-control" id="addItemType" name="itemType" required>
+                                <select class="form-control" id="bookType" name="bookType" required>
                                     <option value="-1" selected>请选择</option>
                                     <option value="0">未知</option>
                                     <option value="1">经典名著</option>
@@ -125,16 +125,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="addItemAuthor" class=" col-sm-2 am-padding-horizontal-0 control-label">书籍图片</label>
+                            <label for="bookDescription" class=" col-sm-2 am-padding-horizontal-0 control-label">书籍描述</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="addItemAuthor" name="itemAuthor" maxlength="32"
+                                <input type="text" class="form-control" id="bookDescription" name="bookDescription" maxlength="32"
                                        required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-8">
-                                <button class="btn btn-primary">添 加</button>
+                                <button class="btn btn-primary" id="bookAddBtn">添 加</button>
                             </div>
                         </div>
 
@@ -167,113 +167,27 @@
 <script type="text/javascript" src="/assets/js/chartjs.js"></script>
 
 <script type="text/javascript">
+    $("#bookAddBtn").click(function () {
+        var bookName = $("#bookName").val();
+        var bookPrice = $("#bookPrice").val();
+        var bookDescription = $("#bookDescription").val();
+        var bookType = $("#bookType").val();
 
-    // 新增
-    $('#addItemBtn').click(function () {
         $.ajax({
-            type: 'POST',
-            url: "<spring:url value="/item/add"/>",
-            data: $('#addItemForm').serialize(),
-            success: function (data) {
-                if(data != "\"success\""){
-                    alert(data);
-                } else {
-                    $('#addItemModal').modal("hide");
-                    document.location.reload(true);
-                }
-            }
-        })
-    });
-
-    // 异步查询 load
-    $('#queryItemBtn').click(function () {
-        var form = $('#queryItemForm');
-        $('#itemCtn').load(form.attr('action'), form.serialize(), function () {
-        });
-    });
-
-    // 详情 info
-    $('.infoItemBtn').click(function () {
-        var id = $(this).data('id');
-        var url = $(this).data('url');
-        $('#infoItemForm').attr('action',url);
-        $.ajax({
-            type: 'POST',
-            url: "<spring:url value="/item/info"/>",
+            type: "post",
+            url: "/backend/book/add",
             data: {
-                "itemId": id
+                bookName: bookName,
+                bookPrice: bookPrice,
+                bookDescription: bookDescription,
+                bookType: bookType
             },
-            success: function (data) {
-                $("#infoItemForm input[name='itemDesc']").val(data.replace(/\"/g,""));
-            }
-        });
-    });
-
-    // 删除 delete
-    $('.deleteItemBtn').click(function () {
-        var id = $(this).data('id');
-        $.ajax({
-            type: 'POST',
-            url: "<spring:url value="/item/delete"/>",
-            data: {
-                "itemId": id
-            },
-            success: function (data) {
-                if(data != "\"success\""){
-                    alert(data);
-                } else {
-                    document.location.reload(true);
-                }
+            success: function () {
+                alert("插入书籍成功！");
+                window.location.reload();
             }
         })
     })
-
-    // 修改 update
-    $('#updateItemBtn').click(function () {
-        var url = $('#infoItemForm').attr('action');
-        var itemDesc = $("#infoItemForm input[name='itemDesc']").val();
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: {
-                "itemDesc": itemDesc
-            },
-            success: function (data) {
-                if(data != "\"success\""){
-                    alert(data);
-                } else {
-                    $('#infoItemModal').modal("hide");
-                    document.location.reload(true);
-                }
-            }
-        })
-    });
-
-    // 注册 register
-    $('.registerItemBtn').click(function () {
-        var id = $(this).data('id');
-        var url = $(this).data('url');
-        $('#registerItemForm').attr('action',url);
-    });
-
-    // 借阅 register
-    $('#addRecordBtn').click(function () {
-        var url = $('#registerItemForm').attr('action');
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: $('#registerItemForm').serialize(),
-            success: function (data) {
-                if(data != "\"success\""){
-                    alert(data);
-                } else {
-                    $('#registerItemModal').modal("hide");
-                    document.location.reload(true);
-                }
-            }
-        })
-    });
-
 </script>
 
 </body>

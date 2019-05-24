@@ -73,7 +73,7 @@
                             <a href="#" class="active">图书列表</a>
                         </li>
                         <li>
-                            <a href="/backend/book/add">添加图书</a>
+                            <a href="/backend/book/add.jsp">添加图书</a>
                         </li>
                     </ul>
                 </li>
@@ -146,10 +146,50 @@
                 bookId: bookId
             },
             success: function () {
+                alert("删除书籍成功");
                 document.location.reload(true);
             }
         })
-    })
+    });
+
+    // 修改书籍信息
+
+
+    $('#modifyBookModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+
+        var bookId = button.data("bookid");
+        var bookName = button.data("bookname");
+        var bookDesc = button.data("bookdesc");
+        var bookType = button.data("booktype");
+        var bookPrice = button.data("bookprice");
+
+        var modal = $(this);
+
+        modal.find("#modifyBookId").val(bookId);
+        modal.find("#modifyBookName").val(bookName);
+        modal.find("#modifyBookPrice").val(bookPrice);
+        modal.find("#modifyBookDescription").val(bookDesc);
+        modal.find("#modifyBookType").val(bookType);
+    });
+
+    $("#bookModifyBtn").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/backend/book/update",
+            data: {
+                bookId: $("#modifyBookId").val(),
+                bookName: $("#modifyBookName").val(),
+                bookType: $("#modifyBookType").val(),
+                bookDescription: $("#modifyBookDescription").val(),
+                bookPrice: $("#modifyBookPrice").val()
+            },
+            success: function () {
+                alert("修改成功");
+                window.location.reload(true);
+            }
+        })
+    });
 </script>
 
 </body>

@@ -30,4 +30,14 @@ public class BookServiceImpl implements BookService {
     public void deleteBookById(String bookId) throws SQLException {
         bookDao.deleteBookById(bookId);
     }
+
+    @Override
+    public void addBook(Book book) throws SQLException {
+        bookDao.insertBook(book);
+    }
+
+    @Override
+    public void updateBook(Book book) throws SQLException {
+         bookDao.updateBook(book);
+    }
 }
