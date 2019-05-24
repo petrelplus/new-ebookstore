@@ -21,11 +21,11 @@
                     <div class="collapse navbar-collapse" id="navbar-example">
                         <div id="nav">
                             <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/booklist.jsp"><p>全部图书</p></a></li>
                                 <li><a href="#sale"><p>书店秒杀</p></a></li>
                                 <li><a href="#list"><p>销售热榜</p></a></li>
                                 <li><a href="#ScreenShot"><p>发现好书</p></a></li>
                                 <li><a href="#recommend"><p>为你推荐</p></a></li>
-                                <li><a href="#contact"><p>联系我们</p></a></li>
                                 <%
                                     if (session.getAttribute("user") != null) {
                                 %>

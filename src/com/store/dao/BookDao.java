@@ -67,6 +67,7 @@ public class BookDao {
             book.setDescription(resultSet.getString("description"));
             book.setImgPath(resultSet.getString("img_path"));
             book.setSecondClassifyId(resultSet.getString("second_classify_id"));
+            book.setAuthor(resultSet.getString("author"));
 
             books.add(book);
         }
@@ -95,18 +96,19 @@ public class BookDao {
     }
 
     public void insertBook(Book book) throws SQLException {
-        String sql = "insert into tb_book (id,name,price,description,second_classify_id) values (?,?,?,?,?)";
+        String sql = "insert into tb_book (id,name,price,description,second_classify_id, author) values (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, book.getId());
         preparedStatement.setString(2, book.getName());
         preparedStatement.setDouble(3, book.getPrice());
         preparedStatement.setString(4, book.getDescription());
         preparedStatement.setString(5, book.getSecondClassifyId());
+        preparedStatement.setString(6, book.getAuthor());
         preparedStatement.executeUpdate();
     }
 
     public void updateBook(Book book) throws SQLException {
-        String sql = "update tb_book set name=?, price=?, description=?, second_classify_id=? where id=?";
+        String sql = "update tb_book set name=?, price=?, description=?, second_classify_id=?, author=? where id=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, book.getName());
@@ -114,6 +116,7 @@ public class BookDao {
         preparedStatement.setString(3, book.getDescription());
         preparedStatement.setString(4, book.getSecondClassifyId());
         preparedStatement.setString(5, book.getId());
+        preparedStatement.setString(6, book.getAuthor());
 
         preparedStatement.executeUpdate();
     }

@@ -1,7 +1,8 @@
 <%@ page import="com.store.model.User" %>
 <%@ page import="com.store.model.Book" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.store.dao.BookDao" %><%--
+<%@ page import="com.store.dao.BookDao" %>
+<%--
   Created by IntelliJ IDEA.
   User: ISSUSER
   Date: 2018/6/7

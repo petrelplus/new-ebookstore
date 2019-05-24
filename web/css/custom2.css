@@ -1,0 +1,28 @@
+
+body {
+    padding-top: 60px;
+    background-color: #f8f9fa;
+    font-family: 微软雅黑 !important;
+}
+
+pre {
+    background: #f7f7f9
+}
+
+@media (min-width: 768px) {
+    body > .navbar-transparent {
+        box-shadow: none
+    }
+
+    body > .navbar-transparent .navbar-nav > .open > a {
+        box-shadow: none
+    }
+}
+
+
+/*modify by echo009*/
+.small-cover-img {
+    max-width: 10rem !important;
+    margin: auto;
+}
+

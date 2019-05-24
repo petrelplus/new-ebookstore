@@ -13,6 +13,8 @@ public class Book {
 
     private String secondClassifyId;
 
+    private String author;
+
     public String getName() {
         return name;
     }
@@ -59,5 +61,13 @@ public class Book {
 
     public void setSecondClassifyId(String secondClassifyId) {
         this.secondClassifyId = secondClassifyId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
