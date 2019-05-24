@@ -30,6 +30,7 @@ public class BookUpdateServlet extends HttpServlet {
         double bookPrice = Double.valueOf(req.getParameter("bookPrice"));
         String bookType = req.getParameter("bookType");
         String bookDescription = req.getParameter("bookDescription");
+        String bookAuthor = req.getParameter("bookAuthor");
 
         Book book = new Book();
         book.setId(bookId);
@@ -37,6 +38,7 @@ public class BookUpdateServlet extends HttpServlet {
         book.setPrice(bookPrice);
         book.setSecondClassifyId(bookType);
         book.setDescription(bookDescription);
+        book.setAuthor(bookAuthor);
 
         try {
             bookService.updateBook(book);

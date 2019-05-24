@@ -24,7 +24,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("后天管理页面");
+        System.out.println("后台管理页面");
         try {
             List<Book> bookList = bookService.getAllBooks();
             List<User> userList = userService.getAllUsers();

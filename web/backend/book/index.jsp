@@ -163,6 +163,7 @@
         var bookDesc = button.data("bookdesc");
         var bookType = button.data("booktype");
         var bookPrice = button.data("bookprice");
+        var bookAuthor = button.data("bookauthor");
 
         var modal = $(this);
 
@@ -171,6 +172,7 @@
         modal.find("#modifyBookPrice").val(bookPrice);
         modal.find("#modifyBookDescription").val(bookDesc);
         modal.find("#modifyBookType").val(bookType);
+        modal.find("#modifyBookAuthor").val(bookAuthor);
     });
 
     $("#bookModifyBtn").click(function () {
@@ -182,7 +184,8 @@
                 bookName: $("#modifyBookName").val(),
                 bookType: $("#modifyBookType").val(),
                 bookDescription: $("#modifyBookDescription").val(),
-                bookPrice: $("#modifyBookPrice").val()
+                bookPrice: $("#modifyBookPrice").val(),
+                bookAuthor: $("#modifyBookAuthor").val()
             },
             success: function () {
                 alert("修改成功");

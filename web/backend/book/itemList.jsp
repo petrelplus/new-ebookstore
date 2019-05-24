@@ -7,7 +7,7 @@
         <th>名称</th>
         <th>价格</th>
         <th>描述</th>
-        <th>封面</th>
+        <th>作者</th>
         <th>类别</th>
         <th>操作</th>
     </tr>
@@ -18,10 +18,10 @@
             <td>${book.name}</td>
             <td>${book.price}</td>
             <td>${book.description}</td>
-            <td>${book.imgPath}</td>
+            <td>${book.author}</td>
             <td>
                 <c:if test="${book.secondClassifyId == 0}">未知</c:if>
-                <c:if test="${book.secondClassifyId == 1}">未知</c:if>
+                <c:if test="${book.secondClassifyId == 1}">经典名著</c:if>
                 <c:if test="${book.secondClassifyId == 2}">秒杀书籍</c:if>
             </td>
             <td>
@@ -31,6 +31,7 @@
                         data-bookprice = "${book.price}"
                         data-bookdesc = "${book.description}"
                         data-booktype = "${book.secondClassifyId}"
+                        data-bookauthor = "${book.author}"
                         data-toggle="modal" data-target="#modifyBookModal">
                     <i class="backspace-icon fa fa-pencil"></i> 修改
                 </button>
@@ -80,6 +81,14 @@
                         <label for="modifyBookPrice" class="col-sm-2 am-padding-horizontal-0 control-label">书籍价格</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control" id="modifyBookPrice" name="modifyBookPrice" maxlength="64"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modifyBookAuthor" class="col-sm-2 am-padding-horizontal-0 control-label">书籍作者</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="modifyBookAuthor" name="modifyBookAuthor" maxlength="64"
                                    required>
                         </div>
                     </div>

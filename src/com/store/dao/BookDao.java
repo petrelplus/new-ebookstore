@@ -115,8 +115,8 @@ public class BookDao {
         preparedStatement.setDouble(2, book.getPrice());
         preparedStatement.setString(3, book.getDescription());
         preparedStatement.setString(4, book.getSecondClassifyId());
-        preparedStatement.setString(5, book.getId());
-        preparedStatement.setString(6, book.getAuthor());
+        preparedStatement.setString(6, book.getId());
+        preparedStatement.setString(5, book.getAuthor());
 
         preparedStatement.executeUpdate();
     }
