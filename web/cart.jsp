@@ -5,7 +5,9 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.store.dao.BookDao" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.store.model.Cart" %>
+<%--
   Created by IntelliJ IDEA.
   User: coldilock
   Date: 2018/6/19
@@ -55,7 +57,21 @@
 
 </head>
 <body>
+<%
+    User user = (User) session.getAttribute("user");
+    String userName = null;
+    if (user != null) {
+        userName = user.getUserName();
+    }
 
+    List<Book> bookList = (List<Book>) request.getAttribute("bookList");
+
+    double total = 0;
+    for(Book book : bookList){
+        total+=book.getPrice();
+    }
+
+%>
 <!--导航栏-->
 <div style="background: white;">
     <div>
@@ -110,7 +126,6 @@
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-primary">
                                         <%
-                                            User user = (User)session.getAttribute("user");
                                             out.print(user.getUserName());
                                         %>
                                     </button>
@@ -119,7 +134,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
                                             <a class="dropdown-item" href="#"><i class="far fa-user"></i>个人信息</a>
-                                            <a  class="dropdown-item" href="/cart.jsp"><i class="far fa-file-alt"></i>购物车</a>
+                                            <a  class="dropdown-item" href=<%="/cartPage.do?userId=" + user.getId()%>><i class="far fa-file-alt"></i>购物车</a>
                                             <a  class="dropdown-item" href="#"><i class="far fa-file-alt"></i>我的订单</a>
                                             <a  class="dropdown-item" href="/logout.do"><i class="far fa-file-alt"></i>退出登录</a>
                                         </div>
@@ -128,10 +143,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
 
                     <%
                     }else{
@@ -162,7 +173,7 @@
                         <div class="dreamcrub">
                             <ul class="breadcrumbs">
                                 <li class="home">
-                                    <a href="index.html" title="返回首页">首页</a>&nbsp;
+                                    <a href="index.jsp" title="返回首页">首页</a>&nbsp;
                                     <span>&gt;</span>
                                 </li>
                                 <li class="women">
@@ -170,48 +181,30 @@
                                 </li>
                             </ul>
                             <ul class="previous">
-                                <li><a href="index.html">返回上一页</a></li>
+                                <li><a href="index.jsp">返回上一页</a></li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="shopping_cart">
                             <%
-                                BookDao bookDao = new BookDao();
-
-                                List<Book> books = bookDao.getAllBook();
+                                for(Book book : bookList){
                             %>
                             <div class="cart_box">
                                 <div class="message1">
                                     <div class="alert-close"></div>
-                                    <div class="list_img"><img src="<%=books.get(0).getImgPath()%>" class="img-responsive" alt=""/></div>
-                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(0).getId()%>"><%=books.get(0).getName()%></a></h4>1 x<span class="actual">
-		                             <%=books.get(0).getPrice()%></span></div>
+                                    <div class="list_img"><img src="<%=book.getImgPath()%>" class="img-responsive" alt=""/></div>
+                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+book.getId()%>"><%=book.getName()%></a></h4>1 x<span class="actual">
+		                             <%=book.getPrice()%></span></div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="cart_box">
-                                <div class="message1">
-                                    <div class="alert-close1"></div>
-                                    <div class="list_img"><img src="<%=books.get(5).getImgPath()%>" class="img-responsive" alt=""/></div>
-                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(5).getId()%>"><%=books.get(5).getName()%></a></h4>1 x<span class="actual">
-		                             <%=books.get(5).getPrice()%></span></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="cart_box1">
-                                <div class="message1">
-                                    <div class="alert-close2"></div>
-                                    <div class="list_img"><img src="<%=books.get(9).getImgPath()%>" class="img-responsive" alt=""/></div>
-                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(9).getId()%>"><%=books.get(9).getName()%></a></h4>1 x<span class="actual">
-		                             <%=books.get(9).getPrice()%></span></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
+                            <%
+                                }
+                            %>
                         <div class="total">
-                            <div class="total_left">共计 : <%=books.get(0).getPrice()+books.get(5).getPrice()+books.get(9).getPrice()%></div>
+                            <div class="total_left">共计 : <%=total%></div>
                             <div class="total_right">
-                               <a href="order.html">确认</a>
+                               <a href="orders.jsp">确认</a>
 
                             </div>
                             <div class="clearfix"></div>

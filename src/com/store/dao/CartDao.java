@@ -94,5 +94,23 @@ public class CartDao {
         return cartbooks;
     }
 
+    public List<Cart> getCartByUserId(String userId) throws SQLException {
+        String sql = "select * from tb_cart where user_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, userId);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet == null) {
+            return null;
+        } else {
+            List<Cart> carts = getResult(resultSet);
+            if (carts.size() == 0) {
+                return null;
+            } else {
+                return carts;
+            }
+        }
+    }
+
 
 }

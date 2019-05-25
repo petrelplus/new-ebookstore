@@ -84,4 +84,14 @@
         <url-pattern>/bookSearch.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CartPageServlet</servlet-name>
+        <servlet-class>com.store.ctrl.CartPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartPageServlet</servlet-name>
+        <url-pattern>/cartPage.do</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

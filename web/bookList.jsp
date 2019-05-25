@@ -92,7 +92,7 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
                                         <a class="dropdown-item" href="#"><i class="far fa-user"></i>个人信息</a>
-                                        <a  class="dropdown-item" href="/cart.jsp"><i class="far fa-file-alt"></i>购物车</a>
+                                        <a  class="dropdown-item" href=<%="/cartPage.do?userId=" + user.getId()%>><i class="far fa-file-alt"></i>购物车</a>
                                         <a  class="dropdown-item" href="#"><i class="far fa-file-alt"></i>我的订单</a>
                                         <a  class="dropdown-item" href="/logout.do"><i class="far fa-file-alt"></i>退出登录</a>
                                     </div>

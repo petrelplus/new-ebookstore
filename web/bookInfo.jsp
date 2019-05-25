@@ -22,13 +22,6 @@
     <title>详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<%--    <script src="../js/constant.js"></script>--%>
-<%--    <script src="../js/common.js"></script>--%>
-<%--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"--%>
-<%--          integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">--%>
-<%--    <script src="../js/cart.js"></script>--%>
-<%--    <script src="../js/favorite.js"></script>--%>
-
     <script src="js/jquery.js"></script>
     <script src="css/bootstrap/popper.js"></script>
     <script src="css/bootstrap/bootstrap.js"></script>
@@ -105,7 +98,7 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
                                         <a class="dropdown-item" href="#"><i class="far fa-user"></i>个人信息</a>
-                                        <a  class="dropdown-item" href="/cart.jsp"><i class="far fa-file-alt"></i>购物车</a>
+                                        <a  class="dropdown-item" href=<%="/cartPage.do?userId=" + user.getId()%>><i class="far fa-file-alt"></i>购物车</a>
                                         <a  class="dropdown-item" href="#"><i class="far fa-file-alt"></i>我的订单</a>
                                         <a  class="dropdown-item" href="/logout.do"><i class="far fa-file-alt"></i>退出登录</a>
                                     </div>

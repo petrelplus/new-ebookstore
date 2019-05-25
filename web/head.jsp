@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<% String userName = request.getParameter("user");%>
+<%@ page import="com.store.model.User" %>
+<%String userName = request.getParameter("user");%>
 <div id="preloader"></div>
 
 <!--导航栏-->
@@ -35,7 +36,7 @@
                                     %>
                                     <ul>
                                         <li><a href="#">&nbsp;个人信息</a></li>
-                                        <li><a href="/cart.jsp">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
+                                        <li><a href="#">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
                                         <li><a href="/logout.do">&nbsp;退出登陆</a></li>
                                     </ul>
                                 <%
