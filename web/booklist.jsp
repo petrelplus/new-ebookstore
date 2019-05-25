@@ -30,7 +30,6 @@
     <br>
     <br>
     <br>
-    <!--顶部固定导航 -->
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary ">
         <div class="container">
             <a href="/index.jsp" class="navbar-brand">Ebookstore</a>
@@ -45,7 +44,7 @@
                     <!--分类下拉框-->
                     <li class="nav-item dropdown ">
                         <div class="nav-link dropdown-toggle btn btn-primary" data-toggle="dropdown"><span
-                                id="searchOption" class="pl-2">所有分类</span> <span class="caret"></span></div>
+                                id="searchOption" class="pl-2">全部分类</span> <span class="caret"></span></div>
                         <div class="dropdown-menu ">
                             <!--fixed category -->
                             <div class="search-option dropdown-item">传记</div>
@@ -55,9 +54,6 @@
                             <div class="search-option dropdown-item">推理</div>
                             <div class="search-option dropdown-item">教育</div>
                             <div class="search-option dropdown-item">商业</div>
-
-                            <hr>
-                            <div class="search-option dropdown-item">所有分类</div>
                         </div>
                     </li>
                     <li class="nav-item ml-3 text-center">

@@ -47,7 +47,7 @@
 <body>
 <div class='login'>
     <div class='login_title'>
-        <span>eBookStore</span>
+        <span>eBookStore账户登陆</span>
     </div>
 
     <form action="LoginOrRegister" method="post">
@@ -56,7 +56,7 @@
                 <div class='icon'>
                     <img alt="" src='img/user_icon_copy.png'>
                 </div>
-                <input name="login" placeholder='username' maxlength="16" type='text' autocomplete="off" />
+                <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" />
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
                 </div>
@@ -65,7 +65,7 @@
                 <div class='icon'>
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
-                <input name="pwd" placeholder='password' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
                 </div>
@@ -74,18 +74,21 @@
                 <div class='icon'>
                     <img alt="" src='img/key.png'>
                 </div>
-                <input name="code" placeholder='code' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
+                <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
                 <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
                     <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
                 </div>
             </div>
-            <div class='login_fields__submit'>
-                <input type='button' value='Register' name="type1">
-                <div>
-                    &nbsp;
+            <center>
+                <div class='login_fields__submit'>
+                    <input type='button' value='注册' name="type1">
+                    <div>
+                        &nbsp;
+                    </div>
+                    <input type='button' value='登陆' name="type2">
                 </div>
-                <input type='button' value='Log   In' name="type2">
-            </div>
+            </center>
+
         </div>
 
 

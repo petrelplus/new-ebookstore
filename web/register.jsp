@@ -32,7 +32,7 @@
                     <img alt="" src='img/user_icon_copy.png'>
                 </div>
 
-                <input name="login" placeholder='username' maxlength="16" type='text' autocomplete="off" />
+                <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" />
 
 
                 <div class='validation'>
@@ -46,7 +46,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='password' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -60,7 +60,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='repassword' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='确认密码' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -73,7 +73,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='realname' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='真实姓名' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -86,7 +86,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='email' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='邮箱' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -99,7 +99,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='address' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='地址' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -112,7 +112,7 @@
                     <img alt="" src='img/lock_icon_copy.png'>
                 </div>
 
-                <input name="pwd" placeholder='telephone' maxlength="16" type='text' autocomplete="off">
+                <input name="pwd" placeholder='电话' maxlength="16" type='text' autocomplete="off">
 
                 <div class='validation'>
                     <img alt="" src='img/tick.png'>
@@ -123,7 +123,7 @@
 
 
             <div class='login_fields__submit'>
-                <input type='button' value='Register' name="type1">
+                <input type='button' value='注册' name="type1">
             </div>
         </div>
 
