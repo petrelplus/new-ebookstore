@@ -26,6 +26,15 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
+<%
+    User user = (User) session.getAttribute("user");
+    String userName = null;
+    if (user != null) {
+        userName = user.getUserName();
+    }
+    List<Book> books = (List<Book>) request.getAttribute("bookList");
+
+%>
 <div class="container">
     <br>
     <br>
@@ -46,20 +55,18 @@
                         <div class="nav-link dropdown-toggle btn btn-primary" data-toggle="dropdown"><span
                                 id="searchOption" class="pl-2">全部分类</span> <span class="caret"></span></div>
                         <div class="dropdown-menu ">
-                            <!--fixed category -->
-                            <div class="search-option dropdown-item">传记</div>
-                            <div class="search-option dropdown-item">历史</div>
-                            <div class="search-option dropdown-item">科幻</div>
-                            <div class="search-option dropdown-item">武侠</div>
-                            <div class="search-option dropdown-item">推理</div>
-                            <div class="search-option dropdown-item">教育</div>
-                            <div class="search-option dropdown-item">商业</div>
+                            <div class="search-option dropdown-item"><a href="/bookList.do">所有类别</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=1">科幻/奇幻</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=2">文学</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=3">传记</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=4">推理</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=5">教育</a></div>
                         </div>
                     </li>
                     <li class="nav-item ml-3 text-center">
                         <!--搜索框-->
-                        <form class="form-inline mt-2 mt-md-0 ">
-                            <input id="search-keyword" class="form-control mr-sm-2" type="text" placeholder="">
+                        <form class="form-inline mt-2 mt-md-0 " id="searchBookName">
+                            <input id="search-keyword" class="form-control mr-sm-2" type="text" placeholder="请输入要搜索的关键字">
                         </form>
                     </li>
                     <li class="nav-item ml-3 text-center">
@@ -77,7 +84,6 @@
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-primary">
                                     <%
-                                        User user = (User)session.getAttribute("user");
                                         out.print(user.getUserName());
                                     %>
                                 </button>
@@ -95,10 +101,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
 
                         <%
                                     }else{
@@ -126,24 +128,21 @@
                     <li class="nav-item">
                         <a class="nav-link active show" data-toggle="tab" href="#commodity">全部图书</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#store">店铺收藏</a>
-                    </li> -->
                 </ul>
 
                 <div id="myTabContent" class="tab-content">
+                    <% if(books.size()==0){%>
+                        <br>
+                        <div class="row">无搜索结果</div>
+                        <br>
+                    <%}%>
                     <div class="tab-pane fade active show" id="commodity">
                         <div class="row">
                             <%
-                                BookDao bookDao = new BookDao();
-
-                                List<Book> books = bookDao.getAllBook();
-
                                 for (Book book : books) {
-
                             %>
-                            <a href=<%="showDetails.do?id=" + book.getId()%>>
-                            <div class="col-6 col-lg-3 m-auto product " data-product-id="<%=book.getId()%>">
+<%--                            <a href=<%="showDetails.do?id=" + book.getId()%>>--%>
+                            <div class="col-6 col-lg-3 m-auto product " data-product-id="<%=book.getId()%>" onclick="showDetails('<%=book.getId()%>')">
 
                                 <div class="card mb-3 box-shadow border border-info rounded bg-light">
                                     <div class="card-header mb-2 font-weight-bold text-dark"><%=book.getName()%></div>
@@ -160,22 +159,28 @@
                                     </div>
                                 </div>
                             </div>
-                            </a>
+<%--                            </a>--%>
 
-                            <%
-                                }
-                            %>
+                            <%}%>
+                            <%if(books.size()%4==3){%>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                            <%} else if (books.size()%4==2) {%>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                            <%} else if (books.size()%4==1) {%>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                                <div class="col-6 col-lg-3 m-auto product " data-product-id=""></div>
+                            <%}%>
 
                             <div class="row">
                                 <div class="col-12  ">
                                     <ul id="pagination-container" class="pagination float-right ">
                                         <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item disabled"><a class="page-link" href="#">»</a></li>
+                                        <%for(int i = 0; i <= books.size() / 8; i++) {%>
+                                            <li class="page-item"><a class="page-link" href="#"><%out.print(i+1);%></a></li>
+                                        <%}%>
+                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -187,22 +192,20 @@
     </div>
 </div>
 <script>
-    function fixPaginagtion() {
+    var searchButton = document.getElementById("search-btn");
+    searchButton.onclick = function(){
 
-        $("#pagination-container").children().each(function (index, ele) {
-            $(ele).children("a").attr("href", "#");
-        })
-        $(".page-link").on("click", function () {
+        var bookName = document.getElementById("search-keyword").value;
+        if(typeof bookName == "undefined" || bookName == null || bookName == ""){
+            alert("请输入搜索内容")
+        }else{
+            window.location.href = "/bookSearch.do?bookName=" + bookName;
+        }
 
-            var category;
-            $(".category-option").each(function (index, ele) {
-                if ($(ele).hasClass("active")) {
-                    category = $(ele).text();
-                }
-            });
-            initBooksContainer(category, $(this).text());
-        })
+    }
 
+    function showDetails(bookId) {
+        window.location.href = "showDetails.do?id=" + bookId;
     }
 </script>
 </body>

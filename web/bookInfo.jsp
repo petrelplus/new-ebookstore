@@ -68,19 +68,18 @@
                         <div class="nav-link dropdown-toggle btn btn-primary" data-toggle="dropdown"><span
                                 id="searchOption" class="pl-2">全部分类</span> <span class="caret"></span></div>
                         <div class="dropdown-menu ">
-                            <div class="search-option dropdown-item">传记</div>
-                            <div class="search-option dropdown-item">历史</div>
-                            <div class="search-option dropdown-item">科幻</div>
-                            <div class="search-option dropdown-item">武侠</div>
-                            <div class="search-option dropdown-item">推理</div>
-                            <div class="search-option dropdown-item">教育</div>
-                            <div class="search-option dropdown-item">商业</div>
+                            <div class="search-option dropdown-item"><a href="/bookList.do">所有类别</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=1">科幻/奇幻</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=2">文学</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=3">传记</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=4">推理</a></div>
+                            <div class="search-option dropdown-item"><a href="/bookCategory.do?categoryId=5">教育</a></div>
                         </div>
                     </li>
                     <li class="nav-item ml-3 text-center">
                         <!--搜索框-->
-                        <form class="form-inline mt-2 mt-md-0 ">
-                            <input id="search-keyword" class="form-control mr-sm-2" type="text" placeholder="">
+                        <form class="form-inline mt-2 mt-md-0 " id="searchBookName">
+                            <input id="search-keyword" class="form-control mr-sm-2" type="text" placeholder="请输入要搜索的关键字">
                         </form>
                     </li>
                     <li class="nav-item ml-3 text-center">
@@ -222,5 +221,18 @@
             }
         });
     }
+
+    var searchButton = document.getElementById("search-btn");
+    searchButton.onclick = function(){
+
+        var bookName = document.getElementById("search-keyword").value;
+        if(typeof bookName == "undefined" || bookName == null || bookName == ""){
+            alert("请输入搜索内容")
+        }else{
+            window.location.href = "/bookSearch.do?bookName=" + bookName;
+        }
+
+    }
+
 </script>
 </html>

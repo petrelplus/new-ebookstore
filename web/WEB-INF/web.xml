@@ -57,4 +57,31 @@
         <url-pattern>/LoginOrRegister</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BookListLet</servlet-name>
+        <servlet-class>com.store.ctrl.BookListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookListLet</servlet-name>
+        <url-pattern>/bookList.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BookCategoryLet</servlet-name>
+        <servlet-class>com.store.ctrl.BookCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookCategoryLet</servlet-name>
+        <url-pattern>/bookCategory.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BookSearchLet</servlet-name>
+        <servlet-class>com.store.ctrl.BookSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookSearchLet</servlet-name>
+        <url-pattern>/bookSearch.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -40,4 +40,9 @@ public class BookServiceImpl implements BookService {
     public void updateBook(Book book) throws SQLException {
          bookDao.updateBook(book);
     }
+
+    @Override
+    public List<Book> getBooksByCategoryId(String categoryId) throws SQLException{
+        return bookDao.getBookListByCategoryId(categoryId);
+    }
 }

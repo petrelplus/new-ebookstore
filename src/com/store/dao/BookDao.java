@@ -120,4 +120,16 @@ public class BookDao {
 
         preparedStatement.executeUpdate();
     }
+
+    public List<Book> getBookListByCategoryId(String categoryId) throws SQLException {
+        String sql = "select * from tb_book where second_classify_id =" + categoryId;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet == null) {
+            return null;
+        } else {
+            return getResult(resultSet);
+        }
+    }
 }
