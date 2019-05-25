@@ -143,7 +143,7 @@
     <div class="row  mt-4 text-left">
         <!--cover img-->
         <div class="col-sm-12 col-md-4 border-left border-right mb-3">
-            <img id="detail-cover-img" src="http://img3m8.ddimg.cn/42/10/25228608-4_w_7.jpg"
+            <img id="detail-cover-img" src="<%=book.getImgPath()%>"
                  class="img-thumbnail big-cover-img" alt="">
         </div>
         <!--simple info-->
