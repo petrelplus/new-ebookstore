@@ -3,7 +3,9 @@
 <%@ page import="com.store.model.User" %>
 <%@ page import="com.store.model.Book" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="com.store.dao.BookDao" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: coldilock
   Date: 2018/6/19
@@ -30,6 +32,9 @@
     <link rel="stylesheet" href="css/bookinfoLayout.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/cartstyle.css"/>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <link href="css/style.css" rel='stylesheet' type='text/css'/>
     <style type="text/css">
 
         #nav ul li a{ text-decoration:none; display:block; padding:0px 10px; }
@@ -47,126 +52,173 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/jquery.actual.min.js"></script>
-    <script src="js/cart.js"></script>
+
 </head>
 <body>
-<%  CartService cartService = new CartServiceImpl();
-    User user = (User)session.getAttribute("user");
-    String userName = null;
-    if (user != null) {
-        userName = user.getUserName();
-    }
-    HashMap<Book,Integer> books = cartService.getBooksById(user.getId());
-%>
 
 <!--导航栏-->
 <div style="background: white;">
     <div>
-        <section>
-            <nav class="navbar navbar-default navbar-fixed-top" style="box-shadow: 0px 0px 20px grey;">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#navbar-example">
-                            <span class="sr-only">Toggle navigation</span>
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="#">Ebookstore</a>
-                    </div>
+        <!--顶部固定导航 -->
+        <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary ">
+            <div class="container">
+                <a href="/index.jsp" class="navbar-brand">Ebookstore</a>
+                <!--菜单按钮-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="" navbarResponsive aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--菜单-->
+                <div class="collapse navbar-collapse text-center" id="navbarResponsive">
+                    <ul class="navbar-nav mr-auto">
+                        <!--分类下拉框-->
+                        <li class="nav-item dropdown ">
+                            <div class="nav-link dropdown-toggle btn btn-primary" data-toggle="dropdown"><span
+                                    id="searchOption" class="pl-2">所有分类</span> <span class="caret"></span></div>
+                            <div class="dropdown-menu ">
+                                <!--fixed category -->
+                                <div class="search-option dropdown-item">传记</div>
+                                <div class="search-option dropdown-item">历史</div>
+                                <div class="search-option dropdown-item">科幻</div>
+                                <div class="search-option dropdown-item">武侠</div>
+                                <div class="search-option dropdown-item">推理</div>
+                                <div class="search-option dropdown-item">教育</div>
+                                <div class="search-option dropdown-item">商业</div>
 
+                                <hr>
+                                <div class="search-option dropdown-item">所有分类</div>
+                            </div>
+                        </li>
+                        <li class="nav-item ml-3 text-center">
+                            <!--搜索框-->
+                            <form class="form-inline mt-2 mt-md-0 ">
+                                <input id="search-keyword" class="form-control mr-sm-2" type="text" placeholder="">
+                            </form>
+                        </li>
+                        <li class="nav-item ml-3 text-center">
+                            <div id="search-btn" class="btn btn-secondary  my-2 my-sm-0">搜索</div>
+                        </li>
+                    </ul>
+                    <%
+                        if (session.getAttribute("user") != null) {
+                    %>
 
-                    <div class="collapse navbar-collapse" id="navbar-example">
-                        <div id="nav">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><p>书店秒杀</p></a></li>
-                                <li><a href="#"><p>销售热榜</p></a></li>
-                                <li><a href="#"><p>发现好书</p></a></li>
-                                <li><a href="#"><p>为你推荐</p></a></li>
-                                <li><a href="#"><p>联系我们</p></a></li>
-                                <%
-                                    if (session.getAttribute("user") != null) {
-                                %>
-                                <li><a href="#"><p>
+                    <!--已经登录-->
+                    <div id="login-links" class="text-center">
+                        <div class="nav navbar-nav mr-auto ">
+                            <div class="nav-item mr-3">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-primary">
                                         <%
-                                            out.print(userName);
-                                    %>
-                                    <ul>
-                                        <li><a href="#">&nbsp;个人信息</a></li>
-                                        <li><a href="/tempCart.jsp">&nbsp;购&nbsp;&nbsp;物&nbsp;&nbsp;车</a></li>
-                                        <li><a href="/logout.do">&nbsp;退出登陆</a></li>
-                                    </ul>
-                                        <%
-                                    }else{
-                                %>
-                                <li><a href="login.jsp"><p>登陆/注册</p></a></li>
-                                <%
-                                    }
-                                %>
-                                </p></a>
-
-                                </li>
-
-
-                            </ul>
+                                            User user = (User)session.getAttribute("user");
+                                            out.print(user.getUserName());
+                                        %>
+                                    </button>
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                            <a class="dropdown-item" href="#"><i class="far fa-user"></i>个人信息</a>
+                                            <a  class="dropdown-item" href="/cart.jsp"><i class="far fa-file-alt"></i>购物车</a>
+                                            <a  class="dropdown-item" href="#"><i class="far fa-file-alt"></i>我的订单</a>
+                                            <a  class="dropdown-item" href="/logout.do"><i class="far fa-file-alt"></i>退出登录</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-                </div><!-- /.container-fluid -->
-            </nav>    <!-- navbar -->
 
-        </section>
 
-        <section id="starting">
-            <br><br>
-            <div class="title">
-                <div class="back_click">
-                    <a href="index.jsp">
-                        &nbsp;返回主页&nbsp;
-                    </a>
+
+
+
+                    <%
+                    }else{
+                    %>
+
+                    <div id="login-links" class="text-center">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.jsp" target="_top">登录/注册</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <%
+                        }
+                    %>
+
                 </div>
             </div>
+        </div>
 
+
+        <section id="starting">
             <div id="cart_outer">
                 <div id="cart_inner">
-                    <div class="catbox" id="cart_table">
 
-                        <table id="cartTable">
-                            <thead>
-                            <tr>
-                                <th>&nbsp;选择</th>
-                                <th>&nbsp;商品</th>
-                                <th>&nbsp;单价</th>
-                                <th>&nbsp;数量</th>
-                                <th>&nbsp;小计</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <%  double totalCharge = 0;
-                                for(Map.Entry<Book,Integer> book : books.entrySet()){%>
-                            <tr>
-                                <td style="width: 10%;"><input class="check-one check" type="checkbox"/></td>
-                                <td class="goods"><img src="<%= book.getKey().getImgPath()%>" alt=""/><span><%= book.getKey().getName()%></span></td>
-                                <td class="price"><%= book.getKey().getPrice()%></td>
-                                <td class="count"><%= book.getValue()%></td>
+                    <div class="col-md-12 content_right">
+                        <div class="dreamcrub">
+                            <ul class="breadcrumbs">
+                                <li class="home">
+                                    <a href="index.html" title="返回首页">首页</a>&nbsp;
+                                    <span>&gt;</span>
+                                </li>
+                                <li class="women">
+                                    购物车
+                                </li>
+                            </ul>
+                            <ul class="previous">
+                                <li><a href="index.html">返回上一页</a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="shopping_cart">
+                            <%
+                                BookDao bookDao = new BookDao();
 
-                                <%
-                                    double singleTotal = book.getKey().getPrice() * book.getValue();
-                                    totalCharge += singleTotal;
-                                %>
+                                List<Book> books = bookDao.getAllBook();
+                            %>
+                            <div class="cart_box">
+                                <div class="message1">
+                                    <div class="alert-close"></div>
+                                    <div class="list_img"><img src="<%=books.get(0).getImgPath()%>" class="img-responsive" alt=""/></div>
+                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(0).getId()%>"><%=books.get(0).getName()%></a></h4>1 x<span class="actual">
+		                             <%=books.get(0).getPrice()%></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cart_box">
+                                <div class="message1">
+                                    <div class="alert-close1"></div>
+                                    <div class="list_img"><img src="<%=books.get(5).getImgPath()%>" class="img-responsive" alt=""/></div>
+                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(5).getId()%>"><%=books.get(5).getName()%></a></h4>1 x<span class="actual">
+		                             <%=books.get(5).getPrice()%></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cart_box1">
+                                <div class="message1">
+                                    <div class="alert-close2"></div>
+                                    <div class="list_img"><img src="<%=books.get(9).getImgPath()%>" class="img-responsive" alt=""/></div>
+                                    <div class="list_desc"><h4><a href="<%="showDetails.do?id="+books.get(9).getId()%>"><%=books.get(9).getName()%></a></h4>1 x<span class="actual">
+		                             <%=books.get(9).getPrice()%></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total">
+                            <div class="total_left">共计 : <%=books.get(0).getPrice()+books.get(5).getPrice()+books.get(9).getPrice()%></div>
+                            <div class="total_right">
+                               <a href="order.html">确认</a>
 
-                                <td class="subtotal"><%= singleTotal%></td>
-                            </tr>
-                            <%}%>
-                            </tbody>
-                        </table>
-
-                        <div class="foot" id="foot">
-                            <label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
-                            <div class="fr closing">结 算</div>
-                            <div class="fr total">合计：￥<span id="priceTotal"><%=totalCharge%></span></div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
 
                     </div>
+
                 </div>
             </div>
 
